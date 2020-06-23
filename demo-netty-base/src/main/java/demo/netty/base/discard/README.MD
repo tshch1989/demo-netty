@@ -1,0 +1,2 @@
+丢弃数据演示,启动后用浏览器访问localhost:8080
+在DiacardServerHandler处断点查看一下,确认服务正常
