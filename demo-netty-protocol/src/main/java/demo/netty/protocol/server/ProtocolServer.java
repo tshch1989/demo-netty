@@ -30,7 +30,7 @@ public class ProtocolServer {
                             ch.pipeline().addLast(new LengthPackDecoder());
                             ch.pipeline().addLast(new LengthPackEncoder());
                             ch.pipeline().addLast(new RequestInfoDecoder());
-                            ch.pipeline().addLast(new RequestInfoEncoder());
+                            ch.pipeline().addLast(new ResponseInfoEncoder());
                             ch.pipeline().addLast(new RequestInfoHandler());
                         }
                     })

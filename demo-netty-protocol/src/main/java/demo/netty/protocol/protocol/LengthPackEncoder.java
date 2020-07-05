@@ -9,5 +9,6 @@ public class LengthPackEncoder extends MessageToByteEncoder<byte[]> {
         int length = msg.length + 4;
         out.writeInt(length);
         out.writeBytes(msg);
+        System.out.println("pack encoder:" + length);
     }
 }

@@ -13,6 +13,7 @@ public class RequestInfoHandler extends ChannelInboundHandlerAdapter {
         }
         RequestInfo requestInfo = (RequestInfo) msg;
         String api = requestInfo.getApi();
+        System.out.println("request:" + api);
         Map<String, Object> params = requestInfo.getParams();
         if("HELLO_API".equals(api)){
             String hello = (String)params.get("hello");
