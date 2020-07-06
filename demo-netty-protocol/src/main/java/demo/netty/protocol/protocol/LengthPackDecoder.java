@@ -3,6 +3,8 @@ package demo.netty.protocol.protocol;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.util.ReferenceCountUtil;
+
 import java.util.List;
 
 /**
@@ -19,9 +21,13 @@ public class LengthPackDecoder extends ByteToMessageDecoder {
         if(in.readableBytes() < length){
             return;
         }
-        ByteBuf retainedSlice = in.retainedSlice(in.readerIndex()+4, length);
-        in.readerIndex(in.readerIndex() + length);
-        out.add(retainedSlice);
+        try {
+            ByteBuf retainedSlice = in.retainedSlice(in.readerIndex() + 4, length);
+            in.readerIndex(in.readerIndex() + length);
+            out.add(retainedSlice);
+        }finally {
+            ReferenceCountUtil.release(in);
+        }
     }
 
 }
